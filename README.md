@@ -1,1 +1,1 @@
-## A seed for other repositories
+# A seed for other repositories
