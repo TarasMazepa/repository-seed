@@ -1,0 +1,52 @@
+name: Update AGENTS.md
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'AGENTS.md'
+
+jobs:
+  update-agents:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repository:
+          - TarasMazepa/monolib
+          - TarasMazepa/ai-todo
+          - TarasMazepa/monorepohub
+          - TarasMazepa/stax
+          - TarasMazepa/monoapp
+          - TarasMazepa/sqliteraw.dart
+          - TarasMazepa/homebrew-stax
+          - TarasMazepa/TarasMazepa
+          - TarasMazepa/openscad.dart
+      fail-fast: false
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with:
+          path: source-repo
+
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          path: target-repo
+          token: ${{ secrets.PAT }}
+
+      - name: Copy AGENTS.md
+        run: |
+          cp source-repo/AGENTS.md target-repo/AGENTS.md
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          path: target-repo
+          token: ${{ secrets.PAT }}
+          commit-message: "chore: update AGENTS.md from seed repository"
+          title: "chore: update AGENTS.md"
+          body: "This PR updates AGENTS.md from the seed repository."
+          branch: "update-agents-md"
+          base: "main"
