@@ -23,13 +23,11 @@ jobs:
           - TarasMazepa/openscad.dart
       fail-fast: false
     steps:
-      - name: Checkout source repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           path: source-repo
 
-      - name: Checkout target repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: ${{ matrix.repository }}
           path: target-repo
@@ -38,12 +36,9 @@ jobs:
           # - Fine-grained PAT: 'Contents' (read & write) and 'Pull requests' (read & write)
           token: ${{ secrets.PAT }}
 
-      - name: Copy AGENTS.md
-        run: |
-          cp source-repo/AGENTS.md target-repo/AGENTS.md
+      - run: cp source-repo/AGENTS.md target-repo/AGENTS.md
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+      - uses: peter-evans/create-pull-request@v6
         with:
           path: target-repo
           # Same PAT requirements apply here
