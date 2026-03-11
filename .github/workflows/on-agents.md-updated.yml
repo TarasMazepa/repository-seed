@@ -1,5 +1,4 @@
-name: Update AGENTS.md
-
+name: on-agents.md-updated.yml
 on:
   push:
     branches:
@@ -8,7 +7,7 @@ on:
       - 'AGENTS.md'
 
 jobs:
-  update-agents:
+  on-agents-md-updated:
     runs-on: ubuntu-latest
     strategy:
       matrix:
