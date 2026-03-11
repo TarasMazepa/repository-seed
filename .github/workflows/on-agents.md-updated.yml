@@ -1,0 +1,70 @@
+name: on-agents.md-updated.yml
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'AGENTS.md'
+
+jobs:
+  on-agents-md-updated:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repository:
+          - TarasMazepa/monolib
+          - TarasMazepa/ai-todo
+          - TarasMazepa/monorepohub
+          - TarasMazepa/stax
+          - TarasMazepa/monoapp
+          - TarasMazepa/sqliteraw.dart
+          - TarasMazepa/homebrew-stax
+          - TarasMazepa/TarasMazepa
+          - TarasMazepa/openscad.dart
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: source-repo
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          path: target-repo
+          # PAT requires the following scopes:
+          # - Classic PAT: 'repo' scope
+          # - Fine-grained PAT: 'Contents' (read & write) and 'Pull requests' (read & write)
+          token: ${{ secrets.PAT }}
+
+      - name: Create and Auto-Merge Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+        run: |
+          cp source-repo/AGENTS.md target-repo/AGENTS.md
+          cd target-repo
+
+          # Check if there are any changes
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          # Configure Git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create and switch to a new branch
+          BRANCH_NAME="update-agents-md-${GITHUB_RUN_ID}"
+          git checkout -b $BRANCH_NAME
+
+          # Commit the changes
+          git add AGENTS.md
+          git commit -m "chore: update AGENTS.md from seed repository"
+          git push -u origin $BRANCH_NAME
+
+          # Create PR using gh cli
+          PR_URL=$(gh pr create --title "chore: update AGENTS.md" --body "This PR updates AGENTS.md from the seed repository." --base main --head $BRANCH_NAME)
+          echo "Created PR: $PR_URL"
+
+          # Enable auto-merge
+          gh pr merge $PR_URL --auto --squash
