@@ -38,13 +38,34 @@ jobs:
 
       - run: cp source-repo/AGENTS.md target-repo/AGENTS.md
 
-      - uses: peter-evans/create-pull-request@v6
-        with:
-          path: target-repo
-          # Same PAT requirements apply here
-          token: ${{ secrets.PAT }}
-          commit-message: "chore: update AGENTS.md from seed repository"
-          title: "chore: update AGENTS.md"
-          body: "This PR updates AGENTS.md from the seed repository."
-          branch: "update-agents-md"
-          base: "main"
+      - name: Create and Auto-Merge Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+        run: |
+          cd target-repo
+
+          # Check if there are any changes
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          # Configure Git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create and switch to a new branch
+          BRANCH_NAME="update-agents-md-${GITHUB_RUN_ID}"
+          git checkout -b $BRANCH_NAME
+
+          # Commit the changes
+          git add AGENTS.md
+          git commit -m "chore: update AGENTS.md from seed repository"
+          git push -u origin $BRANCH_NAME
+
+          # Create PR using gh cli
+          PR_URL=$(gh pr create --title "chore: update AGENTS.md" --body "This PR updates AGENTS.md from the seed repository." --base main --head $BRANCH_NAME)
+          echo "Created PR: $PR_URL"
+
+          # Enable auto-merge
+          gh pr merge $PR_URL --auto --squash
