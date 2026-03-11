@@ -36,12 +36,11 @@ jobs:
           # - Fine-grained PAT: 'Contents' (read & write) and 'Pull requests' (read & write)
           token: ${{ secrets.PAT }}
 
-      - run: cp source-repo/AGENTS.md target-repo/AGENTS.md
-
       - name: Create and Auto-Merge Pull Request
         env:
           GH_TOKEN: ${{ secrets.PAT }}
         run: |
+          cp source-repo/AGENTS.md target-repo/AGENTS.md
           cd target-repo
 
           # Check if there are any changes
