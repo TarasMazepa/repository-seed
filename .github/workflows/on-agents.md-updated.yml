@@ -23,6 +23,7 @@ jobs:
           - TarasMazepa/TarasMazepa
           - TarasMazepa/openscad.dart
           - TarasMazepa/tbx
+          - TarasMazepa/personal
           - TarasMazepa/command-control
       fail-fast: false
     steps:
