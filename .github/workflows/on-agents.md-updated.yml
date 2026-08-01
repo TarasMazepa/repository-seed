@@ -27,11 +27,11 @@ jobs:
           - TarasMazepa/command-control
       fail-fast: false
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           path: source-repo
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: ${{ matrix.repository }}
           path: target-repo
