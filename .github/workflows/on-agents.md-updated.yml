@@ -22,9 +22,8 @@ jobs:
           - TarasMazepa/homebrew-stax
           - TarasMazepa/TarasMazepa
           - TarasMazepa/openscad.dart
-          - TarasMazepa/tbx
+          - TarasMazepa/tbx-for-toolbox.dev
           - TarasMazepa/personal
-          - TarasMazepa/command-control
       fail-fast: false
     steps:
       - uses: actions/checkout@v6
