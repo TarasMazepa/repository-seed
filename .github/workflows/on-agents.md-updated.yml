@@ -24,6 +24,7 @@ jobs:
           - TarasMazepa/openscad.dart
           - TarasMazepa/tbx-for-toolbox.dev
           - TarasMazepa/personal
+          - TarasMazepa/solomiya-reading
       fail-fast: false
     steps:
       - uses: actions/checkout@v6
