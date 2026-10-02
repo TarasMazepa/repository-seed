@@ -13,18 +13,28 @@ jobs:
     strategy:
       matrix:
         repository:
-          - TarasMazepa/monolib
-          - TarasMazepa/ai-todo
-          - TarasMazepa/monorepohub
-          - TarasMazepa/stax
-          - TarasMazepa/monoapp
-          - TarasMazepa/sqliteraw.dart
-          - TarasMazepa/homebrew-stax
           - TarasMazepa/TarasMazepa
+          - TarasMazepa/TarasMazepa.github.io
+          - TarasMazepa/ai-todo
+          - TarasMazepa/circular-todo
+          - TarasMazepa/dart-docker-fastlane
+          - TarasMazepa/github-action-cat
+          - TarasMazepa/homebrew-monoapp
+          - TarasMazepa/homebrew-stax
+          - TarasMazepa/http-template
+          - TarasMazepa/monoapp
+          - TarasMazepa/monolib
+          - TarasMazepa/monorepohub
           - TarasMazepa/openscad.dart
-          - TarasMazepa/tbx-for-toolbox.dev
           - TarasMazepa/personal
+          - TarasMazepa/projects
+          - TarasMazepa/secrets
           - TarasMazepa/solomiya-reading
+          - TarasMazepa/sqliteraw.dart
+          - TarasMazepa/stax
+          - TarasMazepa/tbx-for-toolbox.dev
+          - TarasMazepa/welcome-to-monoapp
+
       fail-fast: false
     steps:
       - uses: actions/checkout@v6
