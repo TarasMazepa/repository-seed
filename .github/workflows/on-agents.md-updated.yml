@@ -16,6 +16,7 @@ jobs:
           - TarasMazepa/TarasMazepa
           - TarasMazepa/TarasMazepa.github.io
           - TarasMazepa/ai-todo
+          - TarasMazepa/chess-handicap-slider
           - TarasMazepa/circular-todo
           - TarasMazepa/dart-docker-fastlane
           - TarasMazepa/github-action-cat
