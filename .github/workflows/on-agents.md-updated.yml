@@ -38,11 +38,11 @@ jobs:
 
       fail-fast: false
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           path: source-repo
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           repository: ${{ matrix.repository }}
           path: target-repo
