@@ -1,4 +1,4 @@
-name: on-agents.md-updated.yml
+name: on-agents-md-updated.yml
 on:
   workflow_dispatch:
   push:
