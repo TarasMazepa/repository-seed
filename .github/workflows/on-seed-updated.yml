@@ -1,4 +1,4 @@
-name: on-agents-md-updated.yml
+name: on-seed-updated.yml
 on:
   workflow_dispatch:
   push:
@@ -6,9 +6,10 @@ on:
       - main
     paths:
       - 'AGENTS.md'
+      - 'docs/from-seed/**'
 
 jobs:
-  on-agents-md-updated:
+  on-seed-updated:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -57,7 +58,12 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT }}
         run: |
           cp source-repo/AGENTS.md target-repo/AGENTS.md
+          mkdir -p target-repo/docs
+          rm -rf target-repo/docs/from-seed
+          cp -R source-repo/docs/from-seed target-repo/docs/
           cd target-repo
+
+          git add AGENTS.md docs/from-seed
 
           # Check if there are any changes
           if [ -z "$(git status --porcelain)" ]; then
@@ -70,16 +76,15 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # Create and switch to a new branch
-          BRANCH_NAME="update-agents-md-${GITHUB_RUN_ID}"
+          BRANCH_NAME="update-from-seed-${GITHUB_RUN_ID}"
           git checkout -b $BRANCH_NAME
 
           # Commit the changes
-          git add AGENTS.md
-          git commit -m "chore: update AGENTS.md from seed repository"
+          git commit -m "chore: changes from repository seed"
           git push -u origin $BRANCH_NAME
 
           # Create PR using gh cli
-          PR_URL=$(gh pr create --title "chore: update AGENTS.md" --body "This PR updates AGENTS.md from the seed repository." --base main --head $BRANCH_NAME)
+          PR_URL=$(gh pr create --title "Changes from repository seed" --body "This PR updates files from the seed repository." --base main --head $BRANCH_NAME)
           echo "Created PR: $PR_URL"
 
           # Enable auto-merge
