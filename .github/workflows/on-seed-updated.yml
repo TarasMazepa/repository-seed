@@ -21,6 +21,7 @@ jobs:
           - TarasMazepa/circular-todo
           - TarasMazepa/dart-docker-fastlane
           - TarasMazepa/github-action-cat
+          - TarasMazepa/hivecomb
           - TarasMazepa/homebrew-monoapp
           - TarasMazepa/homebrew-stax
           - TarasMazepa/http-template
