@@ -16,11 +16,11 @@ jobs:
         repository:
           - TarasMazepa/TarasMazepa
           - TarasMazepa/TarasMazepa.github.io
-          - TarasMazepa/ai-todo
           - TarasMazepa/chess-handicap-slider
           - TarasMazepa/circular-todo
           - TarasMazepa/dart-docker-fastlane
           - TarasMazepa/github-action-cat
+          - TarasMazepa/hivebud
           - TarasMazepa/hivecomb
           - TarasMazepa/homebrew-monoapp
           - TarasMazepa/homebrew-stax
