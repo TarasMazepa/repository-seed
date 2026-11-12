@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'AGENTS.md'
-      - 'docs/from-seed/**'
+      - 'docs/seeded/**'
 
 jobs:
   on-seed-updated:
@@ -61,10 +61,12 @@ jobs:
           cp source-repo/AGENTS.md target-repo/AGENTS.md
           mkdir -p target-repo/docs
           rm -rf target-repo/docs/from-seed
-          cp -R source-repo/docs/from-seed target-repo/docs/
+          rm -rf target-repo/docs/seeded
+          cp -R source-repo/docs/seeded target-repo/docs/
           cd target-repo
 
-          git add AGENTS.md docs/from-seed
+          git add AGENTS.md docs/seeded
+          git rm -r --ignore-unmatch docs/from-seed >/dev/null 2>&1 || true
 
           # Check if there are any changes
           if [ -z "$(git status --porcelain)" ]; then
