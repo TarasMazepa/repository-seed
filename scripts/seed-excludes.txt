@@ -1,0 +1,19 @@
+# ==============================================================================
+# seed-excludes.txt: Repositories excluded from repository-seed matrix.
+#
+# Each entry is categorized:
+#   structural    - Central seed repository itself
+#   upstream-fork - External open-source forks tracking upstream projects
+#   dormant-data  - Dormant, data-only, or inactive repositories ("never ever")
+# ==============================================================================
+
+# Structural / Self
+repository-seed         structural    # Central seed source repository (cannot seed itself)
+
+# External Upstream Open-Source Forks
+dart-lang-native        upstream-fork # Fork of dart-lang/native; tracks upstream OSS
+setup-dart              upstream-fork # Fork of dart-lang/setup-dart; tracks upstream OSS
+
+# Dormant / Data-Only ("Probably Never Ever") Repositories
+Perixx-PERIBOARD-524    dormant-data  # Hardware keyboard notes and configuration data
+sikach                  dormant-data  # Dormant data-only repository
