@@ -65,18 +65,18 @@ Use the ecosystem health auditing tools in `~/tbx-for-toolbox.dev` to monitor op
 
 - **Audit Open PRs across all repositories**:
   ```bash
-  ~/tbx-for-toolbox.dev/tbx-gh-prs.sh
+  ~/tbx-for-toolbox.dev/path/tbx-gh-prs.sh
   ```
   *(Pass `-r` or `--ready` for non-draft PRs, or `--repo <name>` for a single repository).*
 
 - **Audit Failing GitHub Actions CI and Crons**:
   ```bash
-  ~/tbx-for-toolbox.dev/tbx-gh-actions.sh
+  ~/tbx-for-toolbox.dev/path/tbx-gh-actions.sh
   ```
   *(Pass `--days 7` or `--repo <name>` to scope inspections).*
 
 - **Unified Global GitHub Health Dashboard**:
   ```bash
-  ~/tbx-for-toolbox.dev/tbx-gh-status.sh
+  ~/tbx-for-toolbox.dev/path/tbx-gh-status.sh
   ```
   *(Runs a comprehensive health check covering all open PRs and broken workflows across the estate).*

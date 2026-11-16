@@ -7,8 +7,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-TBX_PRS_SCRIPT="$HOME/tbx-for-toolbox.dev/tbx-gh-prs.sh"
-TBX_ACTIONS_SCRIPT="$HOME/tbx-for-toolbox.dev/tbx-gh-actions.sh"
+TBX_PRS_SCRIPT="$HOME/tbx-for-toolbox.dev/path/tbx-gh-prs.sh"
+TBX_ACTIONS_SCRIPT="$HOME/tbx-for-toolbox.dev/path/tbx-gh-actions.sh"
 
 usage() {
 	cat <<EOF
