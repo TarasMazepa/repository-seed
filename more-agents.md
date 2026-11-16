@@ -7,10 +7,10 @@ Instructions and protocols for autonomous agents working in `repository-seed`.
 ## 1. Role & Architecture of `repository-seed`
 
 - **Central Upstream Source of Truth**: This repository centrally defines and maintains shared configurations:
-  - Root agent guidelines: [`AGENTS.md`](AGENTS.md)
+  - Root agent guidelines: [`agents.md`](agents.md)
   - Centrally synchronized documentation: [`docs/seeded/`](docs/seeded/)
 - **Self-Contained Seed Documentation**: Seed files in `docs/seeded/` must remain self-contained. Do not hardcode links or references to private downstream repositories or personal data unless referencing open source tools (like `stax` or `tbx-for-toolbox.dev`).
-- **Automated Propagation Matrix**: Pushes to `main` touching `AGENTS.md` or `docs/seeded/**` automatically trigger [`.github/workflows/on-seed-updated.yml`](.github/workflows/on-seed-updated.yml). This workflow creates branches (`update-from-seed-${GITHUB_RUN_ID}`), opens pull requests, and enables auto-merge across all participating repositories in the estate.
+- **Automated Propagation Matrix**: Pushes to `main` touching `agents.md` or `docs/seeded/**` automatically trigger [`.github/workflows/on-seed-updated.yml`](.github/workflows/on-seed-updated.yml). This workflow creates branches (`update-from-seed-${GITHUB_RUN_ID}`), opens pull requests, and enables auto-merge across all participating repositories in the estate.
 
 ---
 
