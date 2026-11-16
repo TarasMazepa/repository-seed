@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'AGENTS.md'
+      - 'agents.md'
       - 'docs/seeded/**'
 
 jobs:
@@ -58,15 +58,16 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT }}
         run: |
-          cp source-repo/AGENTS.md target-repo/AGENTS.md
+          cp source-repo/agents.md target-repo/agents.md
           mkdir -p target-repo/docs
           rm -rf target-repo/docs/from-seed
           rm -rf target-repo/docs/seeded
           cp -R source-repo/docs/seeded target-repo/docs/
           cd target-repo
 
-          git add AGENTS.md docs/seeded
+          git rm -f --ignore-unmatch AGENTS.md >/dev/null 2>&1 || true
           git rm -r --ignore-unmatch docs/from-seed >/dev/null 2>&1 || true
+          git add agents.md docs/seeded
 
           # Check if there are any changes
           if [ -z "$(git status --porcelain)" ]; then
